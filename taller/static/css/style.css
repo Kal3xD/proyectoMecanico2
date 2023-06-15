@@ -143,9 +143,7 @@ nav > ul > li > button:hover{
 }
 /*modal*/
 
-#modal::backdrop{
-    background-color: rgba(0,0,0,0.55);
-}
+
 
 #modal{
     max-width: 50ch;
@@ -154,10 +152,7 @@ nav > ul > li > button:hover{
 /*carrusel*/
 
 #carouselExampleIndicators{
-    max-width: 600px;
-    padding: 20px 20px;
     margin-top: 0;
-    left: 30%;
     padding: 0;
     position: fixed;
 }
