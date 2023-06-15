@@ -142,16 +142,6 @@ nav > ul > li > button:hover{
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
 }
 /*modal*/
-#btn-abrir-modal{
-    background-size: 24px;
-    background-repeat: no-repeat;
-    background-position: center center;
-    text-transform: uppercase;
-    color: #fff;
-    transition: all 300ms ease; transform: scale(1.1);
-    background-color: #000000;
-    tex
-}
 
 #modal::backdrop{
     background-color: rgba(0,0,0,0.55);

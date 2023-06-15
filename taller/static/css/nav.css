@@ -25,6 +25,7 @@
     background-color: #00000000; /* Color de fondo del botón */
     color: #000000; /* Color del texto del botón */
     border: none; /* Elimina el borde del botón */
+    text-transform:uppercase;
     padding: 7px 0px; /* Espaciado interno del botón */
     border-radius: 0px; /* Bordes redondeados del botón */
     cursor: pointer; /* Cambia el cursor al pasar por encima del botón */
