@@ -34,8 +34,19 @@ class Atencion(models.Model):
     descripcion_ate     = models.CharField(blank=False, null=False, max_length=500)
     imagen_trabajo      = models.ImageField(upload_to=None , null = False, blank = False)
     rut                 = models.ForeignKey("Mecanico",  on_delete=models.CASCADE)
-
+    id_estado           = models.ForeignKey("estado_atencion", on_delete=models.CASCADE, default = 2)
+    
 
 
     def __str__(self):
         return  ("Atención numero") + " " +str(self.id_atencion)
+
+class estado_atencion (models.Model):
+    id_estado                       = models.AutoField(primary_key = True)
+    tipo_estado                     = models.CharField(blank=False, null=False, max_length= 10)
+
+    def __str__(self):
+        return str(self.tipo_estado)
+
+
+
