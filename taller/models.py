@@ -35,11 +35,19 @@ class Atencion(models.Model):
     imagen_trabajo      = models.ImageField(upload_to=None , null = False, blank = False)
     rut                 = models.ForeignKey("Mecanico",  on_delete=models.CASCADE)
     id_estado           = models.ForeignKey("estado_atencion", on_delete=models.CASCADE, default = 2)
+    id_tipo_atencion    = models.ForeignKey("tipo_atencion",  on_delete=models.CASCADE)
     
 
 
     def __str__(self):
         return  ("Atención numero") + " " +str(self.id_atencion)
+
+class tipo_atencion (models.Model):
+    id_tipo_atencion                = models.AutoField(primary_key = True)
+    categoria_atencion              = models.CharField(blank = True, null = False,max_length=20)
+
+    def __str__(self):
+        return  ("Atención ") + str(self.categoria_atencion)
 
 class estado_atencion (models.Model):
     id_estado                       = models.AutoField(primary_key = True)
@@ -49,4 +57,12 @@ class estado_atencion (models.Model):
         return str(self.tipo_estado)
 
 
+class info_contacto (models.Model):
+    id_contacto                     = models.AutoField(primary_key = True)
+    nombre_contacto                 = models.CharField(blank = False, null = False, max_length=15)
+    apellido_contacto               = models.CharField(blank = False, null = False, max_length=50)
+    fecha_contacto                  = models.DateField(auto_now=False, auto_now_add=False)
+    comentario_contacto             = models.CharField(blank = False, null = False, max_length=300)
 
+    def __str__(self):
+        return 'Solicitud de contacto numero ' + str(self.id_contacto)
