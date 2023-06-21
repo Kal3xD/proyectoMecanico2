@@ -35,18 +35,21 @@
                         <button id="btn-abrir-modal">Login</button>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-black" href="{% url 'nuevas_atenciones'%}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Nuevas atenciones
-                        </a>
-                        <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{% url 'chequeoMotor'%}">Chequeo Motor</a></li>
-                        <li><a class="dropdown-item" href="{% url 'sistemaElectronico.html'}">Sistema Electronico</a></li>
-                        <li><a class="dropdown-item" href="{% url 'jsDireccionales.html'}">Dierecionales</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active text-black" aria-current="page" href="{% url 'contacto'%}">Contacto</a>
-                    </li>
+                        <a class="nav-link dropdown-toggle text-black" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Servicios
+                            </a>
+                            <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'chequeoMotor'%}">Chequeo Motor</a></li>
+                            <li><a class="dropdown-item" href="{% url 'sistemaElectronico'%}">Sistema Electronico</a></li>
+                            <li><a class="dropdown-item" href="{% url 'jsDireccionales'%}">Dierecionales</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active text-black" aria-current="page" href="{% url 'nuevas_atenciones'%}">nuevas atenciones</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active text-black" aria-current="page" href="{% url 'contacto'%}">Contacto</a>
+                        </li>
                     </ul>
                     <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
