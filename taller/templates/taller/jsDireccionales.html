@@ -91,41 +91,130 @@
 
 <body>
     
-    <div class="container-card">
-	
-        <div class="card">
-            <figure>
-                <img src="../../static/img/dire1.png">
-            </figure>
-            <div class="contenido-card">
-                <h3>Calibracion Direccional</h3>
-                <p>Podemos crear la identidad corporativa de tu empresa. Diseño , Maquetación de folletos, Catálogos, Papelería y mucho más.</p>
-                <a href="#">Leer Màs</a>
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Informe de Servicio: Inspección y Mantenimiento de Luces de Direcciónales
+            </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+            <img src="../../static/img/dire1.png" alt="Imagen 1" style="float: right; width: 600px;">
+            <strong>Inspección y Mantenimiento de Luces de Direcciónales.</strong> 
+            <br>
+            Fecha: [Fecha del servicio]
+            <br>
+            Cliente: [Nombre del cliente]
+            <br>
+            Vehículo: [Marca, modelo y número de placa]
+            <br>
+
+            Resumen:
+            <br>
+            En el día de hoy, se llevó a cabo una inspección y mantenimiento de las luces direccionales del vehículo
+            mencionado anteriormente en nuestro taller.
+            El objetivo principal fue verificar el correcto funcionamiento de las luces de dirección,
+            así como realizar cualquier ajuste o reparación necesario para garantizar la seguridad vial del cliente.
+        </div>
+        </div>
+        <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Informe de Mantenimiento de Sistemas Hidráulicos en un Automóvil
+            </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+            <img src="../../static/img/dire2.png" alt="Imagen 2" style="float: right; width: 600px;">
+            <strong>Sistema de Frenos Hidráulicos.</strong> 
+            <br>
+            Fecha: [Fecha del servicio]
+            <br>
+            Cliente: [Nombre del cliente]
+            <br>
+            Vehículo: [Marca, modelo y número de placa]
+            <br>
+
+            Resumen:
+            <br>
+            Sistema de Frenos Hidráulicos:
+            Se verificó el nivel del líquido de frenos y se realizó el cambio según el programa de mantenimiento recomendado.
+            Se inspeccionaron las tuberías y las conexiones en busca de posibles fugas o daños.
+            Se purgaron los frenos para eliminar el aire atrapado y garantizar un funcionamiento óptimo.
+            Se comprobó el desgaste de las pastillas y se reemplazaron las que estaban desgastadas.
+            Se ajustaron los frenos según las especificaciones del fabricante.
+            Recomendación: Se sugiere seguir el programa de mantenimiento regular 
+            y estar atento a cualquier indicio de pérdida de líquido de frenos o disminución en el rendimiento del sistema. 
+            Además, es importante cambiar el líquido de frenos según las recomendaciones del fabricante.
             </div>
         </div>
-        <div class="card">
-            <figure>
-                <img src="../../static/img/dire2.png">
-            </figure>
-            <div class="contenido-card">
-                <h3>Ajustes De Direccciones</h3>
-                <p>Nosotros creamos y optimizamos tus perfiles en las Redes Sociales. Importantes para que tu presencia online sea completa.</p>
-                <a href="#">Leer Màs</a>
+        </div>
+        <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            Informe de Sistema de Dirección Asistida Hidráulica
+            </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <img src="../../static/img/dire3.png" alt="Imagen 3" style="float: right; width: 600px;">
+                <strong>Sistema de Dirección Asistida Hidráulica.</strong> 
+            <br>
+            Fecha: [Fecha del servicio]
+            <br>
+            Cliente: [Nombre del cliente]
+            <br>
+            Vehículo: [Marca, modelo y número de placa]
+            <br>
+
+            Resumen:
+            <br>
+            Se verificó el nivel del fluido de dirección asistida y se añadió más fluido según fuera necesario.
+            Se inspeccionaron las mangueras y las conexiones en busca de posibles fugas o desgastes.
+            Se purgó el sistema para eliminar el aire atrapado y garantizar un rendimiento óptimo.
+            Se comprobó el estado de la bomba de dirección asistida y se realizaron ajustes si fue necesario.
+            Recomendación: Se recomienda revisar regularmente el nivel del fluido de dirección asistida
+            y estar atento a cualquier fuga o reducción en la capacidad de dirección asistida. Si se observa algún problema, 
+            se debe buscar atención profesional para evitar daños mayores al sistema.
             </div>
         </div>
-        <div class="card">
-            <figure>
-                <img src="../../static/img/dire3.png">
-            </figure>
-            <div class="contenido-card">
-                <h3>Verificacion Direccional</h3>
-                <p>Creamos tu página web utilizando las últimas tecnologías disponibles. Una Web adaptativa a tu móvil o Tablet y con un gestor de contenido fácil.</p>
-                <a href="#">Leer Màs</a>
-            </div>
         </div>
-        </div>
+    </div>
 
 <script src="{% static 'js/api.js'%}"></script>
 <script src="{%static 'js/funciones.js'%}"></script>
+<style>
+    footer {
+    background-color: #faf8f8;
+    text-align: center;
+    }
+
+    footer p {
+    font-size: 18px;
+    margin-bottom: 10px;
+    }
+
+    footer a {
+    color: #000000;
+    text-decoration: none;
+    margin: 5px;
+    }
+
+    footer a:hover {
+    color: #000000;
+    }
+
+    footer i {
+    font-size: 24px;
+    }
+</style>
+
+<footer>
+    <p>mecanica</p>
+    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+    <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>     
+</footer>
 </body>
 </html>
