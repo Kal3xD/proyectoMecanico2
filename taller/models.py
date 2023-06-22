@@ -63,6 +63,7 @@ class info_contacto (models.Model):
     apellido_contacto               = models.CharField(blank = False, null = False, max_length=50)
     fecha_contacto                  = models.DateField(auto_now=False, auto_now_add=False)
     comentario_contacto             = models.CharField(blank = False, null = False, max_length=300)
+    correo_contacto                 = models.EmailField(blank = False, null = False, max_length=254)
 
     def __str__(self):
         return 'Solicitud de contacto numero ' + str(self.id_contacto)

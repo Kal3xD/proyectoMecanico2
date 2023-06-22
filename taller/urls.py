@@ -9,6 +9,8 @@ urlpatterns = [
     path('contacto', views.contacto, name='contacto'),
     path('jsDireccionales', views.jsDireccionales, name='jsDireccionales'),
     path('nuevas_atenciones', views.nuevas_atenciones, name='nuevas_atenciones'),
-    path('sistemasElectronico', views.sistemaElectronico, name='sistemaElectronico')
+    path('sistemasElectronico', views.sistemaElectronico, name='sistemaElectronico'),
+    path('addContacto',views.addContacto,name='addContacto')
+
 
 ]
