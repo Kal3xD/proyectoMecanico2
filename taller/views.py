@@ -29,6 +29,22 @@ def jsDireccionales(request):
     context={}
     return render(request, 'taller/jsDireccionales.html', context)
 
+def vistasMecanico(request):
+    context={}
+    return render(request, 'taller/vistasMecanico.html', context)
+
+def Mecanico1(request):
+    context={}
+    return render(request, 'taller/Mecanico1.html', context)
+
+def Mecanico2(request):
+    context={}
+    return render(request, 'taller/Mecanico2.html', context)
+
+def Mecanico3(request):
+    context={}
+    return render(request, 'taller/Mecanico3.html', context)
+
 def addContacto(request):
     
     if request.method != 'POST':

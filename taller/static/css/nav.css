@@ -49,3 +49,40 @@
     cursor: pointer; /* Cambia el cursor al pasar por encima del botón */
     text-decoration: none; /* Elimina la decoración de texto por defecto */
 }
+
+.card-container {
+    display: flex;
+    gap: 350px;
+    margin: 150px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.activity {
+    margin-bottom: 40px;
+}
+
+.activity-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.activity-description {
+    margin-bottom: 20px;
+}
+
+.activity-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.activity-images img {
+    width: 200px;
+    height: auto;
+    margin: 5px;
+}
