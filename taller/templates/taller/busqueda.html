@@ -51,10 +51,12 @@
                             <a class="nav-link active text-black" aria-current="page" href="{% url 'contacto'%}">Contacto</a>
                         </li>
                     </ul>
+
                     <form class="d-flex" role="search" method="GET" action="{% url 'buscar' %}">
-                        <input class="form-control me-2" type="search" placeholder="Buscar" name="q" aria-label="Search" value="{{ request.GET.q }}">
-                        <button class="btn btn-outline-success"  type="submit">Buscar</button>
+                    <input class="form-control me-2" type="search" placeholder="Buscar" name="q" aria-label="Search" value="{{ request.GET.q }}">
+                    <button class="btn btn-outline-success"  type="submit">Buscar</button>
                     </form>
+                
                 </div>
                 </div>
             </nav>
@@ -91,18 +93,20 @@
 
     </dialog>
     
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="width: 100vw; height: 87vh; overflow: hidden;">
-        <ol class="carousel-indicators" id="indicators"></ol>
-        <div class="carousel-inner" id="carousel-inner"  ></div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev" >
-            <span class="carousel-control-prev-icon" aria-hidden="true" ></span>
-            <span class="visually-hidden">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </a>
-    </div>
+    
+    <h1> asd
+    
+    {% if resultados %}
+    <ul>
+        {% for mecanicos in resultados %}
+            <li>{{Mecanico.rut}},{{ Mecanico.nombre }}, {{ Mecanico.ap_paterno }}, {{ Mecanico.ap_materno }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No se encontraron resultados.</p>
+    {% endif %}
+
+
     
 <script src="/static/js/api.js"></script>
 <script src="/static/js/funciones.js"></script>
