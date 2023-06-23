@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .models import info_contacto
+from .models import info_contacto, Mecanico, tipo_atencion
+from django.db.models import Q
 
 # Create your views here.
 
@@ -52,3 +53,22 @@ def addContacto(request):
         context={'mensaje':"Ok, mensaje enviado correctamente"}
         return render(request,'taller/contacto.html',context)
 
+def busqueda(request):
+    context={}
+    return render(request,'taller/busqueda.html', context)
+
+def buscar(request):
+   if request.method == 'GET':
+        query = request.GET.get('q')
+
+        if query :
+            resultados_mecanicos = Mecanico.objects.filter(Q(nombre__icontains=query) | Q(ap_paterno__icontains=query))
+            resultados_tipo_ate  = tipo_atencion.objects.filter(Q(categoria_atencion__icontains =query))
+
+            resultados = list(resultados_mecanicos) + list(resultados_tipo_ate)
+                
+
+        else:
+            resultados = []
+
+        return render(request, 'taller/busqueda.html', {'resultados': resultados})
