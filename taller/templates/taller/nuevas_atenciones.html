@@ -87,96 +87,103 @@
     </div>
     <div class="container" style="text-align: center;" >
         
-            <div>
-                Estado de Validacion
-                <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
-            </div>
+            
     </div>
-<form class="row g-6" action="">
-            <!-- Row 1 -->
-            <div class="col-md-2"></div>
-            <div class="col-md-4">
-                <label for="caja_nombre_mecanico" class="form-label">(*)Nombre Mecanico:</label>
-                <input type="text" class="form-control" id="caja_nombre_mecanico" placeholder="Ingrese su nombre" required> 
-            </div>
-            <div class="col-md-4">
-                <label for="caja_apellido_mecanico" class="form-label">(*)Apellido Mecanico:</label>
-                <input type="text" class="form-control" id="caja_apellido_mecanico"placeholder="Ingrese su nombre" required>
-            </div>
-            <div class="col-md-2"></div>
-            
-
-            <!-- Row 2 -->
-            <div class="col-md-2"></div>
-            <div class="col-md-4"> 
-                <div class="dropdown">
-                    <label for="TipoAtencion">(*)Atenciones realizadas:</label>
-                    <select class="form-select" id="TipoAtencion" aria-label="Default select example" required>
-                        <option selected disabled value>Tipo de atencion mecanica</option>
-                        <option value="1">Electronica automotriz</option>
-                        <option value="2">Cajas de cambio</option>
-                        <option value="3">Suspensión y dirección</option>
-                    </select>
-                    
+    <form class="row g-6" action="addAtencion" method = "POST">
+        {% csrf_token %}
+                <!-- Row 1 -->
+                <div class="col-md-3"></div>
+                <div class="col-md-3">
+                    <div class="dropdown">
+    
+                        <label for="caja_nombre_mecanico" class="form-label">(*)Nombre Mecanico:</label>
+                        <select class="form-select" id="nombre_mecanico" name="selec_mecanico"  required>
+                            
+                            {% for opciones in opciones_mecanico %}
+    
+                                <option value={{Mecanico.nombre}}> {{Mecanico.nombre}}  </option>
+    
+                            {% endfor %}
+                            
+                        </select>
+                    </div>
+                </div>
+    
+                <div class="col-md-3">
+                    <div class="dropdown">
+                        <label for="TipoAtencion_1">(*)Atencion realizada:</label>
+                        <select class="form-select" id="TipoAtencion" name="tipoAtencion" aria-label="Default select example" required>
+                            <option selected disabled value>Tipo de atencion mecanica</option>
+                            <option value="1">Electronica automotriz</option>
+                            <option value="2">Cajas de cambio</option>
+                            <option value="3">Suspensión y dirección</option>
+                        </select> 
                 </div></div>
-
-            <div class="col-md-4" >
-                    
-                    <label for="Fecha">(*)Fecha de atención:</label>
-
-                    <input type="date" id="Fecha" name="trip-Fecha"
-                        value="2023-01-22"
-                        min="2022-01-01" max="2100-12-31">
-                </div>
-                <div class="col-md-2"></div>
-
-        
-            <!-- Row 3 -->
-        
-            <br>
-            <div class="col-md-3"></div>
-            
-            <div class="col-md-6">
-                <label for="descripcion_proce" class="form-label" style="text-align:center ;">(*)Descripción de procedimiento</label>
-                <textarea type="text" class="form-control" id="descripcion_proce" placeholder="Ingrese detalles del procedimiento" rows="3" style="width: 100%; align-items: center;"  required></textarea>
-                    
-            </div>
-            <div class="col-md-3"></div>
-
-            <!-- Row 4 -->
-
-            <div class="col-md-4"></div>
-            
-            <div class="col-md-4">
-                    
-                <div class="form-group">
-                    <label for="exampleFormControlFile1">(*)Subir imagenes</label>
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                </div>
+    
+                <div class="col-md-3"></div>
+                
+    
+                <!-- Row 2 -->
+                <div class="col-md-5"></div>
+                
+    
+                <div class="col-md-4" >
                         
-            </div>
+                        <label for="Fecha">(*)Fecha de atención:</label>
+    
+                        <input type="date" id="Fecha" name="trip-Fecha"
+                            value="2023-01-22"
+                            min="2022-01-01" max="2100-12-31">
+                    </div>
+                    <div class="col-md-2"></div>
+    
+            
+                <!-- Row 3 -->
+            
+                <br>
+                <div class="col-md-3"></div>
+                
+                <div class="col-md-5">
+                    <label for="descripcion_proce" class="form-label" style="text-align:center ;">(*)Descripción de procedimiento</label>
+                    <textarea type="text" class="form-control" name="comentario_proce" id="descripcion_proce" placeholder="Ingrese detalles del procedimiento" rows="3" style="width: 100%; align-items: center;"  required></textarea>
+                        
+                </div>
+                <div class="col-md-3"></div>
+    
+                <!-- Row 4 -->
+    
+                <div class="col-md-4"></div>
+                
+                <div class="col-md-4">
+                        
+                    <div class="form-group">
+                        <label for="exampleFormControlFile1">(*)Subir imagenes</label>
+                        <input type="file" class="form-control-file" name="imagen_proce" id="exampleFormControlFile1">
+                    </div>
+                            
+                </div>
+                
+                <div class="col-md-4"></div>
+                
+            <!-- Row 5 -->
             
             <div class="col-md-4"></div>
-            
-        <!-- Row 5 -->
-        
-        <div class="col-md-4"></div>
-
-        <h6 class="col-md-4" style="color: cadetblue;" >Nota: Los campos con (*) son obligatorios.</h6>
-        <div class="col-md-4"></div>    
-
-        <!-- Row 6 -->
-        <div class="col-md-3"></div>
-        <div class="col-md-3">
-            <div style="display: grid;">
-            <input type="submit" class="btn btn-primary" onclick="return enviarformulario()" value='Ingresar para revision' style="align-items: center;">
-            </div></div>
-
-        <div class="col-md-3">
-            <input type="reset" class="btn btn-primary" value="Limpiar información">
-        </div>
-
-        <div class="col-md-3"></div>
+    
+            <h6 class="col-md-4" style="color: cadetblue;" >  Nota: Los campos con (*) son obligatorios.</h6>
+            <div class="col-md-4"></div>    
+    
+            <!-- Row 6 -->
+            <div class="col-md-3"></div>
+            <div class="col-md-3">
+                <div style="display: grid;">
+                <input type="submit" class="btn btn-primary" onclick="return enviarformulario()" value='Ingresar para revision' style="align-items: center;">
+                </div></div>
+    
+            <div class="col-md-3">
+                <input type="reset" class="btn btn-primary" value="Limpiar información" >
+            </div>
+    
+            <div class="col-md-3"></div>
 </form>
 
 

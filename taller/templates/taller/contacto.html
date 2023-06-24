@@ -69,9 +69,9 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                    <form class="d-flex" role="search" method="GET" action="{% url 'buscar' %}">
+                        <input class="form-control me-2" type="search" placeholder="Buscar" name="q" aria-label="Search" value="{{ request.GET.q }}">
+                        <button class="btn btn-outline-success"  type="submit">Buscar</button>
                     </form>
                 </div>
                 </div>
@@ -91,34 +91,34 @@
             </div></div>
         <br>
         <!-- Row 2 -->
-        <div class="col-md-2"></div>
-        <div class="col-md-4">
+        <div class="col-md-3"></div>
+        <div class="col-md-3">
             <label for="caja_nombre" class="form-label">(*)Nombre:</label>
             <input type="text" class="form-control" id="caja_nombre" name= "caja_nombre" placeholder="Ingrese su nombre" required> 
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <label for="caja_apellido_1" class="form-label">(*)Apellido:</label>
             <input type="text" class="form-control" id="caja_apellido" name="caja_apellido" placeholder="Ingrese su nombre" required>
         </div>
-        <div class="col-md-2"></div>
+        <div class="col-md-3"></div>
         
         <!-- Row 3 -->
-        <div class="col-md-2"></div>
-        <div class="col-md-4">
-        <label for="Fecha">(*)Fecha:</label>
+        <div class="col-md-3"></div>
+        <div class="col-md-3">
+            <label for="Fecha">(*)Fecha:</label>
 
-        <input type="date" id="Fecha" name="trip-start"
-            value="2023-01-22"
-            min="2022-01-01" max="2100-12-31">
-        <br></div>
+            <input type="date" id="Fecha" name="trip-start"
+                value="2023-01-22"
+                min="2022-01-01" max="2100-12-31">
+            <br></div>
         
         
-        <div class="col-md-4" >
+        <div class="col-md-3" >
             <label for="caja_correo_1" class="form-label">(*)Correo electronico:</label>
             <input type="email" class="form-control" id="caja_correo" name= "caja_correo"aria-describedby="emailHelp" placeholder="Ingrese email" style="display: inline-flex;" required>
             
         </div>
-        <div class="col-md-2"></div>
+        <div class="col-md-3"></div>
         <br>
 
 
@@ -129,11 +129,12 @@
         <label for="comentario_usuario_1" >(*)Comentarios o dudas:</label></div>
         <div class="col-md-2"></div>
 
+        
         <!-- Row 5 -->
         <div class="col-md-3"></div>
         
         <div class="col-md-6">
-        <textarea class="form-control" id="comentario_usuario" name= "comentario_usuario" placeholder="Ingrese su duda o comentario" rows="3" cols="2" style="align-items: center ; " required></textarea>
+        <textarea class="form-control" id="comentario_usuario" name= "comentario_usuario" placeholder="Ingrese su duda o comentario" rows="5" cols="2" style="align-items: center ; " required></textarea>
         </div>
 
         <div class="col-md-3"></div>
