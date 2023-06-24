@@ -54,9 +54,9 @@
                             <a class="nav-link active text-black" aria-current="page" href="{% url 'contacto'%}">Contacto</a>
                         </li>
                     </ul>
-                    <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                    <form class="d-flex" role="search" method="GET" action="{% url 'buscar' %}">
+                        <input class="form-control me-2" type="search" placeholder="Buscar" name="q" aria-label="Search" value="{{ request.GET.q }}">
+                        <button class="btn btn-outline-success"  type="submit">Buscar</button>
                     </form>
                 </div>
                 </div>
@@ -98,7 +98,7 @@
         <div class="card" style="width: 18rem;">
             <img src="../../static/img/mecanico-juan.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">Mecanico Juan</h5>
+                <h5 class="card-title">Mecanico Juan Saavedra</h5>
                 <p class="card-text">Trabajador Especialista
                                     <br>
                                     Calificacion =6.4
@@ -111,7 +111,7 @@
         <div class="card" style="width: 18rem;">
             <img src="../../static/img/mecanico-Pedro.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">Mecanico Pedro</h5>
+                <h5 class="card-title">Mecanico Pedro Perez</h5>
                 <p class="card-text">
                                         Trabajador Especialista
                                         <br>
@@ -126,7 +126,7 @@
         <div class="card" style="width: 18rem;">
             <img src="../../static/img/mecanico-andre.png" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">Mecanico Andres</h5>
+                <h5 class="card-title">Mecanico Andres Garcia</h5>
                 <p class="card-text">Trabajador Especialista
                                     <br>
                                     Calificacion =6.6

@@ -17,6 +17,8 @@ urlpatterns = [
     path('Mecanico1', views.Mecanico1, name='Mecanico1'),
     path('Mecanico2', views.Mecanico2, name='Mecanico2'),
     path('Mecanico3', views.Mecanico3, name='Mecanico3'),
+    path('addAtencion',views.addAtencion,name='addAtencion'),
+    path('desplegable_mecanico', views.desplegable_mecanico, name ='desplegable_mecanico')
 
 
 ]
