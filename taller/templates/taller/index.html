@@ -31,9 +31,7 @@
                     <li class="nav-item">
                         <a class="nav-link active text-black" aria-current="page" href="{% url 'index'%}">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <button id="btn-abrir-modal">Login</button>
-                    </li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-black" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Servicios
@@ -45,10 +43,28 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active text-black" aria-current="page" href="{% url 'nuevas_atenciones'%}">nuevas atenciones</a>
+                            <a class="nav-link active text-black" aria-current="page" href="{% url 'nuevas_atenciones'%}">Nuevas atenciones</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active text-black" aria-current="page" href="{% url 'vistasMecanico'%}">Nuestros Mecanicos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active text-black" aria-current="page" href="{% url 'login' %}">Login</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active text-black" aria-current="page" href="{% url 'contacto'%}">Contacto</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                                {% if user.is_authenticated %}
+                                    {{user.username}} 
+                                {% else %} 
+                                    Usuario
+                                {% endif %}
+                            </a>
+                            <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Session</a></li>
+                            </ul>
                         </li>
                     </ul>
                     <form class="d-flex" role="search" method="GET" action="{% url 'buscar' %}">
@@ -60,36 +76,7 @@
             </nav>
         </div>
         
-    <dialog id="modal">
-            
-            <body class="cuerpo-login"></body>
-            <div class="login-box">
-                <button id="btn-cerrar-modal">X</button>
-                <img src="../../static/img/logo.png" alt="Logo" height="180px">
-                <h1>Login Aqui</h1>
-
-            <form action="">
-                <!--Usuaurio-->
-                <label for="username">Usuario</label>
-                <input type="text" id="Usuario" placeholder="Ingrese Correo">
-        
-                <!--Password-->
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Ingrese Password">
-        
-                <!--boton login-->
-                <input type="submit" onclick="return enviarFormulario();" value="Log In">
-        
-                <!--referencias a creacion de cuenta y perdida de clave-->
-        
-                
-                <a href="#">¿Perdiste tu clave?</a><br>
-                <a href="creacion.html">¿No tienes usuario?</a>
-            </form>
-            <div id="error"></div>
-            </div>
-
-    </dialog>
+    
     
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="width: 100vw; height: 87vh; overflow: hidden;">
         <ol class="carousel-indicators" id="indicators"></ol>

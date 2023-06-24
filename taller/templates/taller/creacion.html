@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crear Usuario</title>
+    <style>
+        body {
+            background-color: #f1f1f1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .signup-box {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .signup-box h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .signup-box form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .signup-box input[type="text"],
+        .signup-box input[type="password"] {
+            width: 200px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .signup-box button[type="submit"] {
+            width: 120px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-box">
+        <img src="../../static/img/logo.png" alt="Logo">
+        <h1>Crear Usuario</h1>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="Correo" placeholder="Correo">
+            <input type="password" name="password" placeholder="Contraseña">
+            <input type="password" name="confirm_password" placeholder="Confirmar contraseña">
+            <button type="submit">Crear</button>
+        </form>
+        <a href="{% url 'login' %}">Volver a login</a><br>
+        <a href="{% url 'index' %}">Pagina Principal</a><br>
+    </div>
+</body>
+</html>

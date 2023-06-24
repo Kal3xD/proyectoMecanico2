@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import info_contacto, Mecanico, tipo_atencion
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -44,6 +45,21 @@ def Mecanico2(request):
 def Mecanico3(request):
     context={}
     return render(request, 'taller/Mecanico3.html', context)
+
+def login(request):
+    context={}
+    return render(request, 'taller/login.html', context)
+
+def creacion(request):
+    context={}
+    return render(request, 'taller/creacion.html', context)
+
+@login_required
+def menu(request):
+    request.session["usuario"] =request.user.username
+    usuario = request.session["usuario"]
+    context = {"usuario":usuario}
+    return render(request, 'taller/index.html',context)
 
 def addContacto(request):
     
