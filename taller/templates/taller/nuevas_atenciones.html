@@ -89,24 +89,20 @@
         
             
     </div>
-    <form class="row g-6" action="addAtencion" method = "POST">
+     <form class="row g-6" {% comment %}action="addAtencion" method = "POST"{% endcomment %}> 
         {% csrf_token %}
                 <!-- Row 1 -->
                 <div class="col-md-3"></div>
                 <div class="col-md-3">
                     <div class="dropdown">
-    
                         <label for="caja_nombre_mecanico" class="form-label">(*)Nombre Mecanico:</label>
-                        <select class="form-select" id="nombre_mecanico" name="selec_mecanico"  required>
+                        <select class="form-select" id="nombre_mecanico" name="selec_mecanico" required>
                             <option selected disabled value>Nombre Mecanico</option>
-                            <option value="1">Juan Saavedra Solis</option>
-                            <option value="2">Pedro Perez Suarez</option>
-                            <option value="3">Andres Garcia Arredondo</option>   
-                            {% comment %} {% for opciones in opciones_mecanico %} 
-    
-                                <option value={{Mecanico.rut}}> {{Mecanico.nombre}}  </option>
-    
-                            {% endfor %}{% endcomment %}
+                            <option value="opcion1" {% if Mecanico.rut == '16789452-8' %}selected{% endif %}>Juan Saavedra Solis</option>
+                            <option value="opcion2" {% if Mecanico.rut == '12658789-8' %}selected{% endif %}>Pedro Perez Suarez</option>
+                            <option value="opcion3" {% if Mecanico.rut == '19254786-2' %}selected{% endif %}>Andres Garcia Arredondo</option>
+                          </select>
+                          
                             
                         </select>
                     </div>

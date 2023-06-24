@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import info_contacto, Mecanico, tipo_atencion
+from .models import info_contacto, Mecanico, tipo_atencion, Atencion
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 
