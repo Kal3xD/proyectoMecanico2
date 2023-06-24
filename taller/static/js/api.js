@@ -32,6 +32,3 @@ data.forEach((image, index) => {
     carouselInner.appendChild(carouselItem);
 });
 })
-.catch(error => {
-    console.error('Error:', error);
-});
