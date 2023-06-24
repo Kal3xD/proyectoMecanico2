@@ -5,7 +5,6 @@
     <style>
         body {
             background-color: #f1f1f1;
-            display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -65,5 +64,38 @@
         <a href="{% url 'login' %}">Volver a login</a><br>
         <a href="{% url 'index' %}">Pagina Principal</a><br>
     </div>
+
+    <style>
+        footer {
+        background-color: #faf8f8;
+        text-align: center;
+        }
+    
+        footer p {
+        font-size: 18px;
+        margin-bottom: 10px;
+        }
+    
+        footer a {
+        color: #000000;
+        text-decoration: none;
+        margin: 5px;
+        }
+    
+        footer a:hover {
+        color: #000000;
+        }
+    
+        footer i {
+        font-size: 24px;
+        }
+    </style>
+    
+    <footer>
+        <p>© 2023 Mecanico, Inc.</p>
+        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>     
+    </footer>
 </body>
 </html>
