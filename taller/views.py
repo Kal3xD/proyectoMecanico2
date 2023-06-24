@@ -145,6 +145,7 @@ def addAtencion(request):
         return render(request,'taller/index.html',context)
 
 def desplegable_mecanico(request):
+
     opciones_mecanico = Mecanico.objects.all()
 
-    return render(request, 'taller/nuevas_atenciones.html', {'opciones_mecanico': opciones_mecanico})
+    return render(request, 'taller/nuevas_atenciones.html', {'opciones_mecanico': opciones_mecanico}) 

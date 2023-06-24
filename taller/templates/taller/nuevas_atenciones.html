@@ -98,12 +98,15 @@
     
                         <label for="caja_nombre_mecanico" class="form-label">(*)Nombre Mecanico:</label>
                         <select class="form-select" id="nombre_mecanico" name="selec_mecanico"  required>
-                            
-                            {% for opciones in opciones_mecanico %}
+                            <option selected disabled value>Nombre Mecanico</option>
+                            <option value="1">Juan Saavedra Solis</option>
+                            <option value="2">Pedro Perez Suarez</option>
+                            <option value="3">Andres Garcia Arredondo</option>   
+                            {% comment %} {% for opciones in opciones_mecanico %} 
     
-                                <option value={{Mecanico.nombre}}> {{Mecanico.nombre}}  </option>
+                                <option value={{Mecanico.rut}}> {{Mecanico.nombre}}  </option>
     
-                            {% endfor %}
+                            {% endfor %}{% endcomment %}
                             
                         </select>
                     </div>
