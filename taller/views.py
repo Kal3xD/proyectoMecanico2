@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import info_contacto, Mecanico, tipo_atencion, Atencion
+from .models import info_contacto, Mecanico, tipo_atencion, Atencion, estado_atencion
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 
@@ -149,3 +149,11 @@ def desplegable_mecanico(request):
     opciones_mecanico = Mecanico.objects.all()
 
     return render(request, 'taller/nuevas_atenciones.html', {'opciones_mecanico': opciones_mecanico}) 
+
+def lista_atenciones(request):
+    atenciones= Atencion.objects.all()
+    context={"atenciones":atenciones}
+    return render(request, 'taller/lista_atenciones.html', context)
+
+
+    
