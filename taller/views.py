@@ -54,6 +54,10 @@ def creacion(request):
     context={}
     return render(request, 'taller/creacion.html', context)
 
+def carrito(request):
+    context={}
+    return render(request, 'taller/carrito.html', context)
+
 @login_required
 def menu(request):
     request.session["usuario"] =request.user.username

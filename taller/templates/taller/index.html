@@ -52,10 +52,13 @@
                             <a class="nav-link active text-black" aria-current="page" href="{% url 'login' %}">Login</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link active text-black" aria-current="page" href="{% url 'carrito'%}">Tu Carrito</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link active text-black" aria-current="page" href="{% url 'contacto'%}">Contacto</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="" role="button" aria-expanded="false">
                                 {% if user.is_authenticated %}
                                     {{user.username}} 
                                 {% else %} 

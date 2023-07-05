@@ -20,7 +20,8 @@ urlpatterns = [
     path('login', views.login, name='login'),
     path('creacion', views.creacion, name='creacion'),
     path('addAtencion',views.addAtencion,name='addAtencion'),
-    path('desplegable_mecanico', views.desplegable_mecanico, name ='desplegable_mecanico')
+    path('desplegable_mecanico', views.desplegable_mecanico, name ='desplegable_mecanico'),
+    path('carrito',views.carrito,name='carrito')
 
 
 ]
