@@ -17,7 +17,7 @@
     
 
             
-        </div>
+        
         <nav class="navbar navbar-expand-lg bg-custom">
             <div class="container-fluid">
                 <a class="navbar-brand text-black" href="#">
@@ -31,6 +31,7 @@
                     <li class="nav-item">
                         <a class="nav-link active text-black" aria-current="page" href="{% url 'index'%}">Home</a>
                     </li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-black" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Servicios
@@ -51,9 +52,6 @@
                             <a class="nav-link active text-black" aria-current="page" href="{% url 'login' %}">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active text-black" aria-current="page" href="{% url 'carrito'%}">Tu Carrito</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link active text-black" aria-current="page" href="{% url 'contacto'%}">Contacto</a>
                         </li>
                         <li class="nav-item dropdown">
@@ -70,70 +68,69 @@
                         </li>
                     </ul>
                     <form class="d-flex" role="search" method="GET" action="{% url 'buscar' %}">
-                        <input class="form-control me-2" type="search" placeholder="Buscar" name="q" aria-label="Search" value="{{ request.GET.q }}">
-                        <button class="btn btn-outline-success"  type="submit">Buscar</button>
+                    <input class="form-control me-2" type="search" placeholder="Buscar" name="q" aria-label="Search" value="{{ request.GET.q }}">
+                    <button class="btn btn-outline-success" type="submit">Buscar</button>
                     </form>
                 </div>
                 </div>
             </nav>
         </div>
+    
+<main>
+    <br>
+    <br>
+    
+    <div class="container_titulo">
+        Lista de atenciones
+    </div>
+
+
+    <div class="container" style="text-align: center;" >
         
 
-    <div class="card-container">
-        <div class="card" style="width: 18rem;">
-            <img src="../../static/img/mecanico-juan.jpg" class="card-img-top"  alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Mecanico Juan Saavedra Solis</h5>
-                <p class="card-text">Trabajador Especialista
-                                    <br>
-                                    Calificacion =6.4
-                                    <br>
-                                    Especialidad=Motor-Direccionales
-                </p>
-                <a href="{% url 'Mecanico1'%}" class="btn btn-primary">Sus Trabajos</a>
-            </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-            <img src="../../static/img/mecanico-Pedro.jpg" class="card-img-top"  alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Mecanico Pedro Perez Suarez</h5>
-                <p class="card-text">
-                                        Trabajador Especialista
-                                        <br>
-                                        Calificacion =6.9
-                                        <br>
-                                        Especialidad=
-                                        Liquidos-Motor
-                </p>
-                <a href="{% url 'Mecanico2'%}" class="btn btn-primary">Sus Trabajos</a>
-            </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-            <img src="../../static/img/mecanico-andre.png" class="card-img-top"  alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Mecanico Andres Garcia Arredondo</h5>
-                <p class="card-text">Trabajador Especialista
-                                    <br>
-                                    Calificacion =6.6
-                                    <br>
-                                    Especialidad=Motor-Electrico
-                </p>
-                <a href="{% url 'Mecanico3'%}" class="btn btn-primary">Sus Trabajos</a>
-            </div>
-        </div>
+            <button type="button">
+                <a href= "{% url 'nuevas_atenciones'  %}"> Agregar atencion </a>
+            </button>
+
+            
+
+
+
+            <table>
+                {% if atenciones %}
+
+                    <th> ID </th>
+                    <th> Descripción de atención </th>
+                    <th> Nombre Mecanico </th>
+                    <th> Estado </th>
+                    
+                    
+
+                    {% for x in atenciones %}
+                        <tr>
+                            <td> {{x.id_atencion}}
+                            <td> {{x.descripcion_ate}}
+                            <td> {{x.rut}}
+                            <td> {{x.id_estado}}  
+                            <td> <a href="{% url 'encontrar_atencion' pk=x.id_atencion %}"> Modificar</a>   
+                            <td> <a href="{% url 'borrar_atencion' pk=x.id_atencion  %}"> Eliminar</a>
+                            
+
+                        </tr>
+
+
+                    {%endfor%}
+                {%endif%}
+
+            </table>
     </div>
-    
-    
+     
 
 
+</main>
 
-
-
-
-
-
-<script src="/static/js/api.js"></script>
-<script src="/static/js/funciones.js"></script>
+<script src="{% static 'js/validaciones_atenciones.js'%}"></script>
+<script src="{%static 'js/funciones.js'%}"></script>
 <style>
     footer {
     background-color: #faf8f8;
@@ -162,7 +159,7 @@
 
 <footer>
     <p>© 2023 Mecanico, Inc.</p>
-    <a href="" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
     <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
     <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>     
 </footer>

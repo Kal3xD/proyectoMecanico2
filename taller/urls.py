@@ -8,7 +8,6 @@ urlpatterns = [
     path('chequeoMotor', views.chequeoMotor, name='chequeoMotor'),
     path('contacto', views.contacto, name='contacto'),
     path('jsDireccionales', views.jsDireccionales, name='jsDireccionales'),
-    path('nuevas_atenciones', views.nuevas_atenciones, name='nuevas_atenciones'),
     path('sistemasElectronico', views.sistemaElectronico, name='sistemaElectronico'),
     path('addContacto',views.addContacto,name='addContacto'),
     path('busqueda',views.busqueda, name='busqueda'),
@@ -19,9 +18,14 @@ urlpatterns = [
     path('Mecanico3', views.Mecanico3, name='Mecanico3'),
     path('login', views.login, name='login'),
     path('creacion', views.creacion, name='creacion'),
-    path('addAtencion',views.addAtencion,name='addAtencion'),
     path('desplegable_mecanico', views.desplegable_mecanico, name ='desplegable_mecanico'),
-    path('carrito',views.carrito,name='carrito')
+    path('carrito',views.carrito,name='carrito'),
+
+    path('lista_atenciones', views.lista_atenciones, name='lista_atenciones'),
+    path('encontrar_atencion/<str:pk>', views.encontrar_atencion, name='encontrar_atencion'),
+    path('modificar_atencion', views.modificar_atencion, name='modificar_atencion'),
+    path('borrar_atencion/<str:pk>', views.borrar_atencion, name='borrar_atencion'),
+    path('nuevas_atenciones', views.nuevas_atenciones, name='nuevas_atenciones')
 
 
 ]
