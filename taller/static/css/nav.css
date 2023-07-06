@@ -52,7 +52,7 @@
 
 .card-container {
     display: flex;
-    gap: 50px;
+    gap: 300px;
     margin: 50px;
     margin-left: 150px;
 }
