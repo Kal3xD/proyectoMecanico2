@@ -17,7 +17,7 @@
     
 
             
-        
+        </div>
         <nav class="navbar navbar-expand-lg bg-custom">
             <div class="container-fluid">
                 <a class="navbar-brand text-black" href="#">
@@ -86,41 +86,67 @@
 
 
     <div class="container" style="text-align: center;" >
-        
-
-            <button type="button">
-                <a href= "{% url 'nuevas_atenciones'  %}"> Agregar atencion </a>
-            </button>
-
-            
-
-
-
+      
             <table>
                 {% if atenciones %}
 
-                    <th> ID </th>
-                    <th> Descripción de atención </th>
-                    <th> Nombre Mecanico </th>
-                    <th> Estado </th>
                     
                     
+                    <form action="{% url 'modificar_atencion' %}" method="POST">
+                        {%csrf_token %}
 
-                    {% for x in atenciones %}
-                        <tr>
-                            <td> {{x.id_atencion}}
-                            <td> {{x.descripcion_ate}}
-                            <td> {{x.rut}}
-                            <td> {{x.id_estado}}  
-                            <td> <a href="{% url 'encontrar_atencion' pk=x.id_atencion %}"> Modificar</a>   
-                            <td> <a href="{% url 'borrar_atencion' pk=x.id_atencion  %}"> Eliminar</a>
-                            
+                        <pre>ID atencion:             <input type="text" name="id_atencion" value="{{atenciones.id_atencion}}" readonly ></pre>
+                        <pre>Fecha de atencion:       <input type="date" name="fechaAten" value="{{atenciones.fecha_ate}}" required >  </pre>
+                        <pre>Descripción:             <input type="text" name="Descripcion" value="{{atenciones.descripcion_ate}}" >  </pre>
+                        <pre>Imagen:                  <input type="" name="" value="" >  </pre>
+                        
+                        <pre>Mecanico:                <select name="mecanico">
+                        {% for mecanico in mecanicos %}
+                            {%if mecanico.mecanico == atenciones.rut.mecanico %}
+                                <option value= "{{mecanico.rut}}" selected> {{mecanico.nombre}} {{mecanico.ap_paterno}} {{mecanico.ap_materno}} </option>
+                            {%else %}    
+                                <option value= "{{mecanico.rut}}"> {{mecanico.mecanico}} </option>
+                            {% endif %}
+                        {% endfor %}
+                        </select></pre>
+                        
+                        
+                        <pre>Estado:                  <select name="estado"> 
+                        {%for estado_atencion in estados_atenciones  %}
+                            {%if estado_atencion.estado_atencion == atenciones.id_estado.estado_atencion %}
+                                <option value= "{{estado_atencion.id_estado}}" selected> {{estado_atencion.tipo_estado}} </option>
+                            {% else%}
+                                <option value= "{{estado_atencion.id_estado}}" > {{estado_atencion.tipo_estado}} </option>
+                            {%endif%}
+                        {%endfor%}
+                        </select></pre>
 
-                        </tr>
+                        <pre>Tipo de atencion:       <select name="tipo_atencion"> 
+                        {% for tipo_atencion in tipos_atenciones %}
+                            {% if tipo_atencion.tipo_atencion == atenciones.id_tipo_atencion.tipo_atencion %}
+                                <option value= "{{tipo_atencion.id_tipo_atencion}}" selected>  {{tipo_atencion.categoria_atencion}}  </option>
+                            {% else %}
+                                <option value= "{{tipo_atencion.id_tipo_atencion}}">  {{tipo_atencion.categoria_atencion}}  </option>
+                            {% endif %}
 
+                        
+                        {% endfor %}    
+                        </select></pre>
+                        
+                        <input type="submit" name="opcion" value="Actualizar">
 
-                    {%endfor%}
+                    </form>
+                    
                 {%endif%}
+
+                <div id="idMensajes">
+                    {% if mensaje %}
+                    {{mensaje}}
+                    {%endif%}
+                </div>
+
+                <br>
+                <a href="{% url 'lista_atenciones' %}" style="text-align: center;"> Volver </a>
 
             </table>
     </div>

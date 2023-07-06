@@ -18,9 +18,7 @@ def contacto(request):
     context={}
     return render(request, 'taller/contacto.html', context)
 
-def nuevas_atenciones(request):
-    context={}
-    return render(request, 'taller/nuevas_atenciones.html', context)
+
 
 def sistemaElectronico(request):
     context={}
@@ -119,30 +117,7 @@ def buscar(request):
 
             return render(request, 'taller/busqueda.html', {'resultados': resultados})
 
-def addAtencion(request):
-    
-    if request.method != 'POST':
-        generos = Genero.objects.all()
-        context={"generos":generos}
-        return render(request,'alumnos/alumnos_add.html',context)
-        
-    else:
-        
-        nombre_mecanico                 = request.POST["selec_mecanico"]
-        imagen_atencion                 = request.POST["imagen_proce"]
-        fecha_atencion                  = request.POST["trip-Fecha"]
-        desc_atencion                   = request.POST["comentario_proce"]
-        tipo_atencion                   = request.POST["tipoAtencion"]
 
-        obj = Atencion.objects.create(id_tipo_atencion  =  tipo_atencion,
-                                    fecha_ate           =  fecha_atencion,
-                                    descripcion_ate     =  desc_atencion,
-                                    imagen_trabajo      =  imagen_atencion,
-                                    rut                 =  nombre_mecanico,
-                                    )
-        obj.save()
-        context={'mensaje':"Ok, mensaje enviado correctamente"}
-        return render(request,'taller/index.html',context)
 
 def desplegable_mecanico(request):
 
@@ -154,6 +129,114 @@ def lista_atenciones(request):
     atenciones= Atencion.objects.all()
     context={"atenciones":atenciones}
     return render(request, 'taller/lista_atenciones.html', context)
+
+def encontrar_atencion(request, pk):
+    if pk != "":
+        atenciones= Atencion.objects.get(id_atencion=pk)
+        
+        mecanicos= Mecanico.objects.all()
+        tipos_atenciones= tipo_atencion.objects.all()
+        estados_atenciones= estado_atencion.objects.all()
+
+        
+        context={'atenciones': atenciones, 'mecanicos': mecanicos, 'tipos_atenciones': tipos_atenciones, 'estados_atenciones': estados_atenciones}
+
+        if atenciones:
+            return render(request, 'taller/modificar_atenciones.html', context)
+        else:
+            context={'mensaje': "Error, Atencion no existe."}
+            return render(request,'taller/lista_atenciones.html' )
+
+def modificar_atencion(request):
+
+    if request.method == "POST":
+
+        id_atencion= request.POST["id_atencion"]
+        fecha_ate= request.POST["fechaAten"]
+        descripcion_ate= request.POST["Descripcion"]
+        rut =request.POST["mecanico"]
+        id_estado = request.POST["estado"]
+        id_tipo_atencion = request.POST["tipo_atencion"]
+        activo="1"
+        
+        objMecanico= Mecanico.objects.get(rut = rut)
+        objEstado_atencion= estado_atencion.objects.get(id_estado = id_estado)
+        objTipo_atencion = tipo_atencion.objects.get(id_tipo_atencion = id_tipo_atencion)
+
+        atencion = Atencion()
+        atencion.id_atencion= id_atencion
+        atencion.fecha_ate= fecha_ate
+        atencion.descripcion_ate= descripcion_ate
+        atencion.rut=  objMecanico
+        atencion.id_estado= objEstado_atencion
+        atencion.id_tipo_atencion= objTipo_atencion
+        atencion.activo=1
+        atencion.save()
+
+        mecanicos = Mecanico.objects.all()
+        estados_atenciones = estado_atencion.objects.all()
+        tipos_atenciones = tipo_atencion.objects.all()
+
+        context={'mensaje':"Datos actualizados", 'mecanicos':mecanicos, 'estados_atenciones':estados_atenciones, 'tipos_atenciones':tipos_atenciones}
+        return render(request, 'taller/modificar_atenciones.html',context)
+
+    else:
+        atenciones= Atencion.objects.all()
+        context={"atenciones":atenciones}
+        return render(request, 'taller/lista_atenciones.html', context)
+
+
+def borrar_atencion(request, pk):
+    context={}
+    try: 
+        atencion= Atencion.objects.get(id_atencion=pk)
+
+        atencion.delete()
+        mensaje = "Registro eliminado"
+        atenciones = Atencion.objects.all()
+        context={'atenciones': atenciones, 'mensaje':mensaje}
+        return render(request, 'taller/lista_atenciones.html', context)
+    
+    except:
+        mensaje= "Error, Id de atención no existe"
+        atenciones = Atencion.objects.all()
+        context={'atenciones': atenciones, 'mensaje':mensaje}
+        return render(request, 'taller/lista_atenciones.html', context)
+        
+def nuevas_atenciones(request):
+    if request.method != "POST":
+        mecanicos= Mecanico.objects.all()
+        tipos_atenciones= tipo_atencion.objects.all()
+        estados_atenciones= estado_atencion.objects.all()
+
+        context={'mecanicos':mecanicos,'tipos_atenciones':tipos_atenciones, 'estados_atenciones':estados_atenciones }
+        return render(request, 'taller/nuevas_atenciones.html', context)
+
+    else:
+        id_atencion= request.POST["id_atencion"]
+        fecha_ate= request.POST["fechaAten"]
+        descripcion_ate= request.POST["Descripcion"]
+        imagen_trabajo= request.POST["imagen"]
+        rut =request.POST["mecanico"]
+        id_estado = request.POST["valor_deseado"]
+        id_tipo_atencion = request.POST["tipo_atencion"]
+        
+        objMecanico= Mecanico.objects.get(rut = rut)
+        objEstado_atencion= estado_atencion.objects.get(id_estado = id_estado)
+        objTipo_atencion = tipo_atencion.objects.get(id_tipo_atencion = id_tipo_atencion)
+
+        obj= Atencion.objects.create(
+            id_atencion=id_atencion,
+            fecha_ate=fecha_ate,
+            descripcion_ate=descripcion_ate,
+            imagen_trabajo=imagen_trabajo,
+            rut=objMecanico,
+            id_estado=objEstado_atencion,
+            id_tipo_atencion=objTipo_atencion)
+        
+        obj.save()
+        context={'mensaje':'Atencion agregada'}
+        return render(request, 'taller/nuevas_atenciones.html', context)
 
 
     
