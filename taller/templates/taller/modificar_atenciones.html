@@ -42,30 +42,46 @@
                             <li><a class="dropdown-item" href="{% url 'jsDireccionales'%}">Dierecionales</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active text-black" aria-current="page" href="{% url 'lista_atenciones'%}">Atenciones</a>
-                        </li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link active text-black" aria-current="page" href="{% url 'lista_atenciones'%}">Atenciones</a>
+                            </li>
+                        {%endif%}
                         <li class="nav-item">
                             <a class="nav-link active text-black" aria-current="page" href="{% url 'vistasMecanico'%}">Nuestros Mecanicos</a>
                         </li>
+                        {% if user.is_authenticated %}
+                        {%else%}
+                            <li class="nav-item">
+                                <a class="nav-link active text-black" aria-current="page" href="{% url 'login' %}">Login</a>
+                            </li>
+                        {%endif%}
+
+                        {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link active text-black" aria-current="page" href="{% url 'login' %}">Login</a>
+                            <a class="nav-link active text-black" aria-current="page" href="{% url 'carrito'%}">Tu Carrito</a>
                         </li>
+                        {%else%}
+                        
+                        {%endif%}
+                        
                         <li class="nav-item">
                             <a class="nav-link active text-black" aria-current="page" href="{% url 'contacto'%}">Contacto</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
-                                {% if user.is_authenticated %}
-                                    {{user.username}} 
-                                {% else %} 
-                                    Usuario
-                                {% endif %}
-                            </a>
-                            <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Session</a></li>
-                            </ul>
-                        </li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                                    {% if user.is_authenticated %}
+                                        {{user.username}} 
+                                    {% else %} 
+                                        Usuario
+                                    {% endif %}
+                                </a>
+                                <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Session</a></li>
+                                </ul>
+                            </li>
+                        {% endif %}
                     </ul>
                     <form class="d-flex" role="search" method="GET" action="{% url 'buscar' %}">
                     <input class="form-control me-2" type="search" placeholder="Buscar" name="q" aria-label="Search" value="{{ request.GET.q }}">
@@ -85,7 +101,7 @@
     </div>
 
 
-    <div class="container" style="text-align: center;" >
+    <div class="container" style="text-align: center; item-align: center;" >
       
             <table>
                 {% if atenciones %}
@@ -98,7 +114,7 @@
                         <pre>ID atencion:             <input type="text" name="id_atencion" value="{{atenciones.id_atencion}}" readonly ></pre>
                         <pre>Fecha de atencion:       <input type="date" name="fechaAten" value="{{atenciones.fecha_ate}}" required >  </pre>
                         <pre>Descripción:             <input type="text" name="Descripcion" value="{{atenciones.descripcion_ate}}" >  </pre>
-                        <pre>Imagen:                  <input type="" name="" value="" >  </pre>
+                        <pre>Imagen:<input accept="image/*" type="file" value="" >  </pre>
                         
                         <pre>Mecanico:                <select name="mecanico">
                         {% for mecanico in mecanicos %}
@@ -133,7 +149,9 @@
                         {% endfor %}    
                         </select></pre>
                         
-                        <input type="submit" name="opcion" value="Actualizar">
+                        <pre><input type="submit" name="opcion" value="Actualizar"></pre>
+                        
+                        
 
                     </form>
                     
@@ -146,7 +164,14 @@
                 </div>
 
                 <br>
-                <a href="{% url 'lista_atenciones' %}" style="text-align: center;"> Volver </a>
+                <div class="row g-1">
+                    <div class="col-md-4"></div>
+                    
+                    <div class="col-md-4">
+                    <a href="{% url 'lista_atenciones' %}"> Volver </a>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
 
             </table>
     </div>

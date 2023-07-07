@@ -42,30 +42,46 @@
                             <li><a class="dropdown-item" href="{% url 'jsDireccionales'%}">Dierecionales</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active text-black" aria-current="page" href="{% url 'lista_atenciones'%}">Atenciones</a>
-                        </li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link active text-black" aria-current="page" href="{% url 'lista_atenciones'%}">Atenciones</a>
+                            </li>
+                        {%endif%}
                         <li class="nav-item">
                             <a class="nav-link active text-black" aria-current="page" href="{% url 'vistasMecanico'%}">Nuestros Mecanicos</a>
                         </li>
+                        {% if user.is_authenticated %}
+                        {%else%}
+                            <li class="nav-item">
+                                <a class="nav-link active text-black" aria-current="page" href="{% url 'login' %}">Login</a>
+                            </li>
+                        {%endif%}
+
+                        {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link active text-black" aria-current="page" href="{% url 'login' %}">Login</a>
+                            <a class="nav-link active text-black" aria-current="page" href="{% url 'carrito'%}">Tu Carrito</a>
                         </li>
+                        {%else%}
+                        
+                        {%endif%}
+                        
                         <li class="nav-item">
                             <a class="nav-link active text-black" aria-current="page" href="{% url 'contacto'%}">Contacto</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
-                                {% if user.is_authenticated %}
-                                    {{user.username}} 
-                                {% else %} 
-                                    Usuario
-                                {% endif %}
-                            </a>
-                            <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Session</a></li>
-                            </ul>
-                        </li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                                    {% if user.is_authenticated %}
+                                        {{user.username}} 
+                                    {% else %} 
+                                        Usuario
+                                    {% endif %}
+                                </a>
+                                <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Session</a></li>
+                                </ul>
+                            </li>
+                        {% endif %}
                     </ul>
                     <form class="d-flex" role="search" method="GET" action="{% url 'buscar' %}">
                     <input class="form-control me-2" type="search" placeholder="Buscar" name="q" aria-label="Search" value="{{ request.GET.q }}">
@@ -82,20 +98,47 @@
     
     <div class="container_titulo">
         Ingreso de atenciones
+        <br>
     </div>
-    <div class="container" style="text-align: center;" >
-        
+    <div class="container" style="text-align: center;">
+        <br>
             
-    
-        <form action="nuevas_atenciones" method="POST"> 
+            
+        <form class="row g-8"  action="nuevas_atenciones" method="POST"> 
             {% csrf_token %}
-
-            <pre>ID atencion:             <input type="text" name="id_atencion" unique ></pre>
-            <pre>Fecha de atencion:       <input type="date" name="fechaAten" required >  </pre>
-            <pre>Descripción:             <input type="text" name="Descripcion" required >  </pre>
-            <pre>Imagen:                  <input type="" name="imagen"  >  </pre>
+            <!------------------------ROW 1-------------------------------------->
+            <div class="col-md-4"></div>
+            <div class="col-md-4" >
+                <pre>ID atencion:        <input type="text" name="id_atencion" unique ></pre>
+            </div>
+            <div class="col-md-4"></div>
             
-            <pre>Mecanico:                <select name="mecanico">
+            <!--ROW 2-->
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+            <pre>Fecha de atencion:       <input type="date" name="fechaAten" required >  </pre>
+            </div>
+            <div class="col-md-4"></div>
+
+
+            <!--ROW 3-->
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+            <pre>Descripción:        <input type="text" name="Descripcion" required >  </pre>
+            </div>
+            <div class="col-md-4"></div>
+
+            <!--ROW 4-->
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+            <pre>Imagen:<input accept="image/*" type="file" name="imagen" multiple  >  </pre>
+            </div>
+            <div class="col-md-4"></div>
+
+            <!--ROW 5-->
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+            <pre>Mecanico:        <select name="mecanico">
             {% for mecanico in mecanicos %}
                 {%if mecanico.mecanico == atenciones.rut.mecanico %}
                     <option value= "{{mecanico.rut}}" selected> {{mecanico.nombre}} {{mecanico.ap_paterno}} {{mecanico.ap_materno}} </option>
@@ -104,9 +147,13 @@
                 {% endif %}
             {% endfor %}
             </select></pre>
-            
-            
-            <pre>Estado:                  <select name="estado" disabled > 
+            </div>
+            <div class="col-md-4"></div>
+
+            <!--ROW 6-->
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+            <pre>Estado:        <select name="estado" disabled > 
             {%for estado_atencion in estados_atenciones  %}
                 <option value= "{{estado_atencion.id_estado}}" {% if estado_atencion.id_estado == 2%} selected  {%endif%} > {{estado_atencion.tipo_estado}}
                 
@@ -115,8 +162,15 @@
             {%endfor%}
             </select></pre>
             <input type="hidden" name="valor_deseado" value="{{ 2 }}">
+            </div>
+            <div class="col-md-4"></div>
 
-            <pre>Tipo de atencion:       <select name="tipo_atencion"> 
+            
+            <!--ROW 7-->
+
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+            <pre>Tipo de atencion:        <select name="tipo_atencion"> 
             {% for tipo_atencion in tipos_atenciones %}
                 {% if tipo_atencion.tipo_atencion == atenciones.id_tipo_atencion.tipo_atencion %}
                     <option value= "{{tipo_atencion.id_tipo_atencion}}" selected>  {{tipo_atencion.categoria_atencion}}  </option>
@@ -127,19 +181,37 @@
             
             {% endfor %}    
             </select></pre>
-            
+            </div>
+            <div class="col-md-4"></div>
+
+
+            <!--ROW 8-->
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
             <input type="submit" name="opcion" value="Agregar">
+            </div>
+            <div class="col-md-4"></div>
                 
         </form>
+        <div class="row g-1">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+            <div id="idMensajes"  >
+                {% if mensaje %}
+                {{mensaje}}
+                {%endif%}
+            </div></div>
+            <div class="col-md-4"></div>
 
-        <div id="idMensajes">
-            {% if mensaje %}
-            {{mensaje}}
-            {%endif%}
+        <div class="row g-1">
+            <div class="col-md-4"></div>
+            
+            <div class="col-md-4">
+            <a href="{% url 'lista_atenciones' %}"> Volver </a>
+            </div>
+            <div class="col-md-4"></div>
         </div>
 
-        <br>
-        <a href="{% url 'lista_atenciones' %}"> Volver </a>
     </div>
 
 </main>
