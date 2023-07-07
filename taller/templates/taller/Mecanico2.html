@@ -42,33 +42,46 @@
                             <li><a class="dropdown-item" href="{% url 'jsDireccionales'%}">Dierecionales</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active text-black" aria-current="page" href="{% url 'lista_atenciones'%}">Atenciones</a>
-                        </li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link active text-black" aria-current="page" href="{% url 'lista_atenciones'%}">Atenciones</a>
+                            </li>
+                        {%endif%}
                         <li class="nav-item">
                             <a class="nav-link active text-black" aria-current="page" href="{% url 'vistasMecanico'%}">Nuestros Mecanicos</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active text-black" aria-current="page" href="{% url 'login' %}">Login</a>
-                        </li>
+                        {% if user.is_authenticated %}
+                        {%else%}
+                            <li class="nav-item">
+                                <a class="nav-link active text-black" aria-current="page" href="{% url 'login' %}">Login</a>
+                            </li>
+                        {%endif%}
+                        
+                        {% if user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link active text-black" aria-current="page" href="{% url 'carrito'%}">Tu Carrito</a>
                         </li>
+                        {%else%}
+                        
+                        {%endif%}
+                        
                         <li class="nav-item">
                             <a class="nav-link active text-black" aria-current="page" href="{% url 'contacto'%}">Contacto</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
-                                {% if user.is_authenticated %}
-                                    {{user.username}} 
-                                {% else %} 
-                                    Usuario
-                                {% endif %}
-                            </a>
-                            <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Session</a></li>
-                            </ul>
-                        </li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                                    {% if user.is_authenticated %}
+                                        {{user.username}} 
+                                    {% else %} 
+                                        Usuario
+                                    {% endif %}
+                                </a>
+                                <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Session</a></li>
+                                </ul>
+                            </li>
+                        {% endif %}
                     </ul>
                     <form class="d-flex" role="search" method="GET" action="{% url 'buscar' %}">
                         <input class="form-control me-2" type="search" placeholder="Buscar" name="q" aria-label="Search" value="{{ request.GET.q }}">

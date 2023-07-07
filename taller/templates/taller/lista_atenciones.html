@@ -42,30 +42,48 @@
                             <li><a class="dropdown-item" href="{% url 'jsDireccionales'%}">Dierecionales</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active text-black" aria-current="page" href="{% url 'lista_atenciones'%}">Atenciones</a>
-                        </li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link active text-black" aria-current="page" href="{% url 'lista_atenciones'%}">Atenciones</a>
+                            </li>
+                        {%endif%}
                         <li class="nav-item">
                             <a class="nav-link active text-black" aria-current="page" href="{% url 'vistasMecanico'%}">Nuestros Mecanicos</a>
                         </li>
+
+                        
+                        {% if user.is_authenticated %}
+                        {%else%}
+                            <li class="nav-item">
+                                <a class="nav-link active text-black" aria-current="page" href="{% url 'login' %}">Login</a>
+                            </li>
+                        {%endif%}
+                        
+                        {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link active text-black" aria-current="page" href="{% url 'login' %}">Login</a>
+                            <a class="nav-link active text-black" aria-current="page" href="{% url 'carrito'%}">Tu Carrito</a>
                         </li>
+                        {%else%}
+                        
+                        {%endif%}
+                        
                         <li class="nav-item">
                             <a class="nav-link active text-black" aria-current="page" href="{% url 'contacto'%}">Contacto</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
-                                {% if user.is_authenticated %}
-                                    {{user.username}} 
-                                {% else %} 
-                                    Usuario
-                                {% endif %}
-                            </a>
-                            <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Session</a></li>
-                            </ul>
-                        </li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                                    {% if user.is_authenticated %}
+                                        {{user.username}} 
+                                    {% else %} 
+                                        Usuario
+                                    {% endif %}
+                                </a>
+                                <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Session</a></li>
+                                </ul>
+                            </li>
+                        {% endif %}
                     </ul>
                     <form class="d-flex" role="search" method="GET" action="{% url 'buscar' %}">
                     <input class="form-control me-2" type="search" placeholder="Buscar" name="q" aria-label="Search" value="{{ request.GET.q }}">
@@ -86,43 +104,62 @@
 
 
     <div class="container" style="text-align: center;" >
-        
+        <div class="row g-8">
+            <!--Row 1-->
+            <div class="col-md-4"></div>
 
-            <button type="button">
-                <a href= "{% url 'nuevas_atenciones'  %}"> Agregar atencion </a>
-            </button>
+            <div class="col-md-4" style="border:-color: #aaaaaa;
+            border-width: 1px;
+            border-style: solid;">
+                <table >
+                    {% if atenciones %}
 
-            
-
-
-
-            <table>
-                {% if atenciones %}
-
-                    <th> ID </th>
-                    <th> Descripción de atención </th>
-                    <th> Nombre Mecanico </th>
-                    <th> Estado </th>
-                    
-                    
-
-                    {% for x in atenciones %}
-                        <tr>
-                            <td> {{x.id_atencion}}
-                            <td> {{x.descripcion_ate}}
-                            <td> {{x.rut}}
-                            <td> {{x.id_estado}}  
-                            <td> <a href="{% url 'encontrar_atencion' pk=x.id_atencion %}"> Modificar</a>   
-                            <td> <a href="{% url 'borrar_atencion' pk=x.id_atencion  %}"> Eliminar</a>
+                            
+                            <th> ID </th>
+                            <th> Tipo de atención </th>
+                            <th> Descripción de atención </th>
+                            <th> Nombre Mecanico </th>
+                            <th> Estado </th>
+                            
                             
 
-                        </tr>
+                            {% for x in atenciones %}
+                                <tr>
+                                    <td> {{x.id_atencion}}
+                                    <td> {{x.id_tipo_atencion}}
+                                    <td> {{x.descripcion_ate}}
+                                    <td> {{x.rut}}
+                                    <td> {{x.id_estado}}  
+                                    
+                                    <td> 
+                                        <button type="button">
+                                            <a href="{% url 'encontrar_atencion' pk=x.id_atencion %}" type="button"> Modificar</a>  
+                                        </button> 
+                                    <td>
+                                        <button type="button">
+                                        <a href="{% url 'borrar_atencion' pk=x.id_atencion  %}"> Eliminar</a>
+                                        </button>
+                                        
+
+                                </tr>
 
 
-                    {%endfor%}
-                {%endif%}
+                        {%endfor%}
+                    {%endif%}
 
-            </table>
+                </table>
+            
+                <br>
+                <button type="button">
+                    <a href= "{% url 'nuevas_atenciones'  %}"> Agregar atencion </a>
+                </button>
+            </div>
+
+            <div class="col-md-4"></div>
+
+
+        </div>
+
     </div>
     
 
